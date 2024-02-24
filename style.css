@@ -1,0 +1,76 @@
+:root {
+  --primary-background-color: #0b0f19;
+  --secondary-background-color: #1f2937;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #9ca3af;
+  --border-color: #374151;
+  --border-radius: 0.3rem;
+  --accent: #0060df;
+  --error: #f44336;
+}
+
+* {
+  box-sizing: border-box;
+  color: var(--primary-text-color);
+
+  font-family: "Roboto Mono", monospace;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--primary-background-color);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+button {
+  width: min(100%, 5rem);
+  height: 3rem;
+
+  border: none;
+  outline: none;
+  background-color: var(--accent);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.5rem;
+  word-break: break-word;
+  word-break: break-all;
+}
+
+tr:nth-child(even) {
+  background-color: var(--secondary-background-color);
+}
