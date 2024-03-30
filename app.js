@@ -1,8 +1,8 @@
 async function list() {
   document.querySelector("table").innerHTML = `
   <tr>
-    <th>name</th>
-    <th>last run time</th>
+    <th id="name">name</th>
+    <th id="time" onclick="switchTime();">last run time</th>
   </tr>`;
 
   const params = new URLSearchParams({
@@ -44,15 +44,23 @@ async function list() {
 
 function createNotebookItem(name, date) {
   const item = document.createElement("tr");
-  if (name === "[Private Notebook]")
-    item.innerHTML = `
-    <td>${name}</td>
-    <td onclick="timeSince('${date.toISOString()}');">${date.toISOString().replace("T", "<br>").split(".")[0]}</td>`;
+  if (name === "[Private Notebook]") return item;
   else
     item.innerHTML = `
     <td><a href="https://www.kaggle.com/dr12ak/${name}" target="_blank" rel="noopener noreferrer">${name}</a></td>
-    <td onclick="timeSince('${date.toISOString()}');">${date.toISOString().replace("T", "<br>").split(".")[0]}</td>`;
+    <td data-date="${date.toISOString()}">${date.toISOString().replace("T", "<br>").split(".")[0]}</td>`;
   return item;
+}
+
+function switchTime() {
+  const t = document.querySelector("#time");
+  if (t.innerHTML === "last run time") {
+    t.innerHTML = "time since last run";
+    document.querySelectorAll("td[data-date]").forEach((td) => (td.innerHTML = timeSince(td.dataset.date)));
+  } else {
+    t.innerHTML = "last run time";
+    document.querySelectorAll("td[data-date]").forEach((td) => (td.innerHTML = td.dataset.date.replace("T", "<br>").split(".")[0]));
+  }
 }
 
 function timeSince(date) {
@@ -61,5 +69,5 @@ function timeSince(date) {
   const hours = Math.round(difference / (1000 * 60 * 60)) % 24;
   const minutes = Math.round(difference / (1000 * 60)) % 60;
   const seconds = Math.round(difference / 1000) % 60;
-  alert(days + "d " + hours + "h " + minutes + "m " + seconds + "s ago");
+  return days + "d " + hours + "h " + minutes + "m " + seconds + "s ago";
 }
