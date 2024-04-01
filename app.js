@@ -12,7 +12,7 @@ async function list() {
     group: "profile",
     user: "dr12ak",
     language: "all",
-    kernelType: "notebook",
+    kernelType: "all",
     outputType: "all",
     sortBy: "dateRun",
     dataset: "",
